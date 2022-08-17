@@ -17,9 +17,9 @@ const headCount = async () =>
 // TODO: Create a function that executes the aggregate method on the Student model and will calculate the overall grade by using the $avg operator
 const grade = async (studentId) =>
   Student.aggregate([
-    {
-      $match: { _id: studentId },
-    },
+    // {
+    //   $match: { _id: studentId },
+    // },
     {
       $unwind: "$assignments",
     },
@@ -27,7 +27,7 @@ const grade = async (studentId) =>
       // Your code here
       $group: {
         _id: studentId,
-        avg: { $avg: "$score" },
+        avgAmount: { $avg: "$assignments.score" },
       },
     },
   ]);
